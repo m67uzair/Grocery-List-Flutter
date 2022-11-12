@@ -54,7 +54,7 @@ class ItemHelper {
 
     for (var pado in itemList) {
       // print(pado);
-      print("${pado.itemName} ${pado.unit} ${pado.category}");
+      print("asfter sort ${pado.itemName} ${pado.unit} ${pado.category}");
     }
     return itemList;
   }
@@ -122,10 +122,10 @@ class ItemHelper {
       // print('me ${units.runtimeType}');
     }
 
-    for (var pado in itemList) {
-      print(pado);
-      print("${pado.itemName} ${pado.unit} ${pado.category}");
-    }
+    // for (var pado in itemList) {
+    //   print(pado);
+    //   print("${pado.itemName} ${pado.unit} ${pado.category}");
+    // }
 
     for (var pado in allRows) {
       print(pado);
@@ -176,11 +176,10 @@ class ItemHelper {
       DatabaseHelper.columnUnits: itemUnits
     };
     final rowsAffected = await dbHelper.update(row);
-    if (itemUnits == String)
-      itemList[index] =
-          ItemModel(id, itemName, int.parse(itemUnits), itemCategory);
-    else
-      ItemModel(id, itemName, itemUnits, itemCategory);
+
+    itemList.add(ItemModel(id, itemName, itemUnits, itemCategory));
+
+    // ItemModel(id, itemName, itemUnits, itemCategory);
     print('updated $rowsAffected row(s)');
   }
 

@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
             addedItemId = await itemHelper.insert(
-                itemNameController.text.trim(),
+                itemNameController.text.trim().toLowerCase(),
                 categoryController.text.trim(),
                 unitController.text.trim());
 
@@ -238,13 +238,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 itemList[index].id,
                                                 index,
                                                 updatedItemNameController.text
-                                                    .trim(),
+                                                    .trim()
+                                                    .toLowerCase(),
                                                 updatedCategoryController.text
                                                     .trim(),
-                                                updatedUnitController.text
-                                                    .trim())
+                                                int.parse(updatedUnitController
+                                                    .text
+                                                    .trim()))
                                             .whenComplete(() {
                                           itemList = itemHelper.initialSort();
+                                          print(
+                                              "updated list ${itemList[index].itemName} ${itemList[index].category}");
                                           setState(() {});
                                           Navigator.pop(context);
                                         });
